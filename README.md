@@ -47,7 +47,6 @@ Basic example to get started:
 ```
 RF_communication-with-LoRa-/
 ├── src/                    # Source code
-├── examples/               # Example applications
 ├── docs/                   # Documentation
 ├── tests/                  # Unit tests
 ├── requirements.txt        # Python dependencies
