@@ -1,0 +1,84 @@
+#include <LoRa_E220.h>
+
+#define LORA_RX 16
+#define LORA_TX 17
+
+#define PIN_M0 18
+#define PIN_M1 5
+#define PIN_AUX 4
+
+#define BUTTON_PIN1 13
+#define BUTTON_PIN2 12
+#define BUTTON_PIN3 14
+#define BUTTON_PIN4 27
+
+#define LED_PIN 15
+
+HardwareSerial LoRaSerial(2);
+LoRa_E220 e220(&LoRaSerial, PIN_M0, PIN_M1, PIN_AUX);
+
+void setup() {
+
+  Serial.begin(115200);
+
+  pinMode(BUTTON_PIN1, INPUT_PULLUP);
+  pinMode(BUTTON_PIN2, INPUT_PULLUP);
+  pinMode(BUTTON_PIN3, INPUT_PULLUP);
+  pinMode(BUTTON_PIN4, INPUT_PULLUP);
+
+  pinMode(LED_PIN, OUTPUT);
+
+  LoRaSerial.begin(9600, SERIAL_8N1, LORA_RX, LORA_TX);
+
+  e220.begin();
+  e220.setMode(MODE_0_NORMAL);
+
+  Serial.println("4 Channel LoRa Transmitter Ready");
+}
+
+void loop() {
+
+  if (digitalRead(BUTTON_PIN1) == LOW) {
+    e220.sendMessage("R1");
+    Serial.println("R1 Sent");
+
+    digitalWrite(LED_PIN, HIGH);
+    delay(200);
+    digitalWrite(LED_PIN, LOW);
+
+    while (digitalRead(BUTTON_PIN1) == LOW);
+  }
+
+  if (digitalRead(BUTTON_PIN2) == LOW) {
+    e220.sendMessage("R2");
+    Serial.println("R2 Sent");
+
+    digitalWrite(LED_PIN, HIGH);
+    delay(200);
+    digitalWrite(LED_PIN, LOW);
+
+    while (digitalRead(BUTTON_PIN2) == LOW);
+  }
+
+  if (digitalRead(BUTTON_PIN3) == LOW) {
+    e220.sendMessage("R3");
+    Serial.println("R3 Sent");
+
+    digitalWrite(LED_PIN, HIGH);
+    delay(200);
+    digitalWrite(LED_PIN, LOW);
+
+    while (digitalRead(BUTTON_PIN3) == LOW);
+  }
+
+  if (digitalRead(BUTTON_PIN4) == LOW) {
+    e220.sendMessage("R4");
+    Serial.println("R4 Sent");
+
+    digitalWrite(LED_PIN, HIGH);
+    delay(200);
+    digitalWrite(LED_PIN, LOW);
+
+    while (digitalRead(BUTTON_PIN4) == LOW);
+  }
+}
