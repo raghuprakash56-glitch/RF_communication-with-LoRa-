@@ -1,0 +1,50 @@
+#include <LoRa_E220.h>
+
+#define LORA_RX 16
+#define LORA_TX 17
+
+#define PIN_M0 18
+#define PIN_M1 5
+#define PIN_AUX 4
+
+#define BUTTON_PIN1 13
+
+#define LED_PIN 15
+
+HardwareSerial LoRaSerial(2);
+LoRa_E220 e220(&LoRaSerial, PIN_M0, PIN_M1, PIN_AUX);
+
+void setup() {
+
+  Serial.begin(9600);
+
+  pinMode(BUTTON_PIN1, INPUT_PULLUP);
+
+
+  pinMode(LED_PIN, OUTPUT);
+  digitalWrite(LED_PIN, LOW);
+
+  LoRaSerial.begin(9600, SERIAL_8N1, LORA_RX, LORA_TX);
+
+  e220.begin();
+  e220.setMode(MODE_0_NORMAL);
+
+  Serial.println("4 Channel LoRa Transmitter Ready");
+}
+
+void loop() {
+
+  if (digitalRead(BUTTON_PIN1) == LOW) {
+
+    e220.sendMessage("R1");
+
+    Serial.println("Relay 1 Command Sent");
+
+    digitalWrite(LED_PIN, HIGH);
+    delay(200);
+    digitalWrite(LED_PIN, LOW);
+
+    while(digitalRead(BUTTON_PIN1)==LOW);
+  }
+
+  
