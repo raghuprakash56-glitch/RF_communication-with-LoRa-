@@ -20,7 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Coming Soon
 - Core LoRa communication module
 - Example implementations
-- Unit tests
+- Unit tests.
 - API documentation
 
 ## Future Releases
