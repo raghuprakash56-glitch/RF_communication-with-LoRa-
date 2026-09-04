@@ -6,6 +6,9 @@ A comprehensive project for RF (Radio Frequency) communication using LoRa (Long 
 
 This project demonstrates practical implementation of LoRa-based RF communication systems, enabling long-range, low-power wireless communication for IoT and embedded systems applications.
 
+
+
+
 ## ✨ Features
 
 - Long-range wireless communication (up to several kilometers)
